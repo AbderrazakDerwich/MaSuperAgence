@@ -1,0 +1,3 @@
+#index:
+#    app_home: /
+#    controller: App\Controller\DefaultController::home
