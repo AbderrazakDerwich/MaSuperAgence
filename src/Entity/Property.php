@@ -10,8 +10,8 @@ class Property
 {
 
     const HEAT = [
-        0 => 'electric',
-        1 => 'gaz'
+        0 => 'ELECTRIC',
+        1 => 'GAZ'
     ];
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -186,5 +186,10 @@ class Property
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function getHeatType()
+    {
+        return self::HEAT[$this->heat];
     }
 }
