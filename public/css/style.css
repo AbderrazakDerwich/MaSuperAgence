@@ -1,0 +1,8 @@
+input {
+    font-family: "Bitstream Vera Serif Bold";
+    src: url("/static/styles/libs/font-awesome/fonts/fontawesome-webfont.fdf491ce5ff5.woff");
+}
+
+body {
+    font-family: "Bitstream Vera Serif Bold", serif;
+}

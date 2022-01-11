@@ -1,18 +1,22 @@
 {% extends "base.html.twig" %}
 
-{% block title %}
-	{{property.title}}
-{% endblock %}
+{% block title %}{{property.title}}{% endblock %}
 
 {% block body %}
-	<div class="jumbotron">
+<div style="font-family: Georgia, serif;">	
+	<div class="mt-4 p-5  bg-light text-white rounded">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="color:black;">
 				<div class="col-md-8"></div>
 				<div class="col-4">
 					<h1>{{property.title}}</h1>
-					<h2>{{property.rooms}}pièces{{property.surface}}m2</h2>
-					<a href="button" class="btn btn-primary">Contacter l'agence</a>
+					<h2>{{property.rooms}}
+						pièces
+						{{property.surface}}
+						m2</h2>
+					<a href="button" class="btn btn-primary">
+						Contacter l'agence
+					</a>
 				</div>
 			</div>
 		</div>
@@ -20,9 +24,8 @@
 
 	<div class="container mt-4">
 		<p>
-			{{property.description | nl2br }}
+			{{property.desciption | nl2br }}
 		</p>
-
 		<div class="row">
 			<div class="col-md-8">
 				<h2>Caractéristique</h2>
@@ -53,5 +56,6 @@
 				<h2>Spécificité</h2>
 			</div>
 		</div>
-    </div>
-	{% endblock %}
+	</div>
+</div>
+{% endblock %}

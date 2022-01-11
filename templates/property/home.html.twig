@@ -1,5 +1,24 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello PropertyController!{% endblock %}
+{% block title %}Hello PropertyController!
+{% endblock %}
 {% block body %}
-    <h1 class="my-4"><center>Voir tous nos biens</center></h1>
+	<h1 class="my-4">
+		<center>Voir tous nos biens</center>
+	</h1>
+	<div class="container">
+		<div class="row">
+			{% for property in propertys %}
+				<div class="col-3 mr-2">
+					<div class="card" style="width: 14rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{property.title}}</h5>
+							<p class="card-text">{{property.city}}.{{property.PostalCode}}</p>
+                            <p class="card-text">{{property.price}}.£</p>
+							<a href="{{path('app_show',{id:property.id})}}" class="btn btn-outline-primary btn-sm"> voir</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

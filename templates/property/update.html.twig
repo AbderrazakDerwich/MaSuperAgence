@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {{ form_start(form) }}
+        <div class="container mt-3" style="font-family:Georgia, serif;">
+            <div class="row">
+                <div class="col-4">
+                    {{ form_row(form.title, { 'label': 'Titre' }) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(form.surface, { 'label': 'Surface' }) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(form.price, { 'label': 'Prix' }) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    {{ form_row(form.bedrooms, { 'label': 'Pièces' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.rooms, { 'label': 'Chambres' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.heat, { 'label': 'Chauffage' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.floor, { 'label': 'Etage' }) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    {{ form_row(form.adresse, { 'label': 'adresse' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.city, { 'label': 'Ville' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.postal_code, { 'label': 'code postal' }) }}
+                </div>
+                <div class="col-2">
+                    {{ form_row(form.sold, { 'label': 'Vendu' }) }}
+                </div>
+            </div>
+            <div class="row">
+                {{ form_row(form.desciption, { 'label': 'Desciption' }) }}
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-secondary"> Créer</a>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+            

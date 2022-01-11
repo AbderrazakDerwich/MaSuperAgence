@@ -6,6 +6,7 @@ use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Property
 {
 
@@ -36,7 +37,7 @@ class Property
     #[ORM\Column(type: 'integer')]
     private $heat;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string', length: 255)]
     private $city;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -50,6 +51,12 @@ class Property
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
+
+    #[ORM\Column(type: 'integer')]
+    private $rooms;
+
+    #[ORM\Column(type: 'integer')]
+    private $floor;
 
     public function getId(): ?int
     {
@@ -128,12 +135,12 @@ class Property
         return $this;
     }
 
-    public function getCity(): ?int
+    public function getCity(): ?string
     {
         return $this->city;
     }
 
-    public function setCity(int $city): self
+    public function setCity(string $city): self
     {
         $this->city = $city;
 
@@ -191,5 +198,38 @@ class Property
     public function getHeatType()
     {
         return self::HEAT[$this->heat];
+    }
+
+    public function getRooms(): ?int
+    {
+        return $this->rooms;
+    }
+
+    public function setRooms(int $rooms): self
+    {
+        $this->rooms = $rooms;
+
+        return $this;
+    }
+
+    public function getFloor(): ?int
+    {
+        return $this->floor;
+    }
+
+    public function setFloor(int $floor): self
+    {
+        $this->floor = $floor;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setDateTime()
+    {
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTimeImmutable());
+        }
     }
 }
