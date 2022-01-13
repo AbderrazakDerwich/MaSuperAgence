@@ -6,14 +6,14 @@
 		<center>Voir tous nos biens</center>
 	</h1>
 	<div class="container">
-		<div class="row">
+		<div class="row mt-2">
 			{% for property in propertys %}
-				<div class="col-3 mr-2">
+				<div class="col-3 mr-2 mt-2">
 					<div class="card" style="width: 14rem;">
 						<div class="card-body">
-							<h5 class="card-title">{{property.title}}</h5>
-							<p class="card-text">{{property.city}}.{{property.PostalCode}}</p>
-                            <p class="card-text">{{property.price}}.£</p>
+							<h5 class="card-title" >{{property.title}}</h5>
+							<p class="card-text" style="line-height: 0.8;">{{property.city}}.{{property.PostalCode}}</p>
+                            <p class="card-text" style="line-height: 0.8;">{{property.price}}.£</p>
 							<a href="{{path('app_show',{id:property.id})}}" class="btn btn-outline-primary btn-sm"> voir</a>
 						</div>
 					</div>
