@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<div class="container mt-3">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#NUM</th>
+					<th scope="col">Title</th>
+					<th scope="col">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for key,property in propertys %}
+					<tr>
+						<td>{{ key }}</td>
+						<td>{{property.title}}</td>
+						<td>
+							<a href="{{path('app_edit',{id:property.id})}}" class="btn btn-outline-success btn-sm">Edit</a>
+							<a href="{{path('app_delete',{id:property.id})}}" class="btn btn-outline-danger btn-sm">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

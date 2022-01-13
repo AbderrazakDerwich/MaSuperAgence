@@ -10,13 +10,18 @@
 			{% for property in propertys %}
 				<div class="col-3 mr-2 mt-2">
 					<div class="card" style="width: 14rem;">
+						<img src="{{ vich_uploader_asset(property) }}" alt="{{ property.imageName }}" style="weight=100%">
 						<div class="card-body">
-							<h5 class="card-title" >{{property.title}}</h5>
+							<h5 class="card-title">{{property.title}}</h5>
 							<p class="card-text" style="line-height: 0.8;">{{property.city}}.{{property.PostalCode}}</p>
-                            <p class="card-text" style="line-height: 0.8;">{{property.price}}.£</p>
-							<a href="{{path('app_show',{id:property.id})}}" class="btn btn-outline-primary btn-sm"> voir</a>
+							<p class="card-text" style="line-height: 0.8;">{{property.price}}.£</p>
+							<a href="{{path('app_show',{id:property.id})}}" class="btn btn-outline-primary btn-sm">
+								voir</a>
 						</div>
 					</div>
+				</div>
+				<div class="navigation">
+					{{ knp_pagination_render(pagination) }}
 				</div>
 			{% endfor %}
 		</div>

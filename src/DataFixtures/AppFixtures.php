@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
   
         for ($i = 0; $i < 5; $i++) {
             $property = new Property;
-            $property->setTitle('Title' .$i);
+            $property->setTitle('Title ' .$i);
             $property->setDesciption("C'est une maison avec un étage. Au rez-de-chaussée, il y a une chambre, une cuisine, une salle de bains, un salon et une salle à manger. Dans la chambre, il y a un lit, un radiateur, une table de nuit,
              un placard, un bureau et une chaise");
             $property->setSurface(random_int(10,500));

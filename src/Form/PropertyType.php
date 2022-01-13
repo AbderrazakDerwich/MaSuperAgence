@@ -32,10 +32,9 @@ class PropertyType extends AbstractType
             ->add('sold', CheckboxType::class)
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => '...',
+                'allow_delete' => false,
                 'download_label' => '...',
-                'download_uri' => true,
+                'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
             ]);;

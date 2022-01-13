@@ -7,7 +7,9 @@
 	<div class="mt-4 p-5  bg-light text-white rounded">
 		<div class="container">
 			<div class="row" style="color:black;">
-				<div class="col-md-8"></div>
+				<div class="col-md-8">
+					<img src="{{ vich_uploader_asset(property) }}" alt="{{ property.imageName }}" style="weight=400,height=auto">
+				</div>
 				<div class="col-4">
 					<h1>{{property.title}}</h1>
 					<h2>{{property.rooms}}
