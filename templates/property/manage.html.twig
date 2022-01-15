@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 {% block body %}
+
+
 	<div class="container mt-3">
 		<table class="table table-striped">
 			<thead>
@@ -20,8 +22,11 @@
 						</td>
 					</tr>
 				{% endfor %}
-
 			</tbody>
 		</table>
+		<div class="navigation mt-5">
+			{{ knp_pagination_render(propertys,'partials/pagination.html.twig') }}
+		</div>
+
 	</div>
 {% endblock %}
