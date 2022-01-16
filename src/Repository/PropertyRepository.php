@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Search;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +18,40 @@ class PropertyRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Property::class);
+    }
+
+    /**
+     * @return Property[] Returns an array of Property objects
+     */
+    public function findBySearch(Search $search)
+    {
+        if ($search->getMinPrice()) {
+            $query = $this->createQueryBuilder('p')
+                ->andWhere('p.price >= :val')
+                ->setParameter('val', $search->getMinPrice())
+                ->getQuery()
+                ->getResult();
+        }
+        if ($search->getMinSurface()) {
+            $query = $this->createQueryBuilder('p')
+                ->andWhere('p.surface >= :val')
+                ->setParameter('val', $search->getMinSurface())
+                ->getQuery()
+                ->getResult();
+        }
+        return $query;
+    }
+
+    /**
+     * @return Property[] Returns an array of Property objects
+     */
+    public function findProperty()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.sold = :val')
+            ->setParameter('val', true)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

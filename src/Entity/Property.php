@@ -53,9 +53,6 @@ class Property
     #[ORM\Column(type: 'string', length: 255)]
     private $postal_code;
 
-    #[ORM\Column(type: 'boolean')]
-    private $sold;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
@@ -73,6 +70,9 @@ class Property
 
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $sold;
 
 
     public function getId(): ?int
@@ -275,5 +275,17 @@ class Property
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getSolds(): ?bool
+    {
+        return $this->solds;
+    }
+
+    public function setSolds(?bool $solds): self
+    {
+        $this->solds = $solds;
+
+        return $this;
     }
 }

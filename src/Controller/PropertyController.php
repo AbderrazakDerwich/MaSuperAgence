@@ -10,34 +10,39 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\PropertyRepository;
 use App\Form\PropertyType;
 use App\Form\SearchType;
 
 
 class PropertyController extends AbstractController
 {
-    private EntityManagerInterface $em;
 
-    public function __construct(EntityManagerInterface $em)
+    private EntityManagerInterface $em;
+    //private PropertyRepository $repo;
+
+    public function __construct(EntityManagerInterface $em,)
     {
         $this->em = $em;
     }
 
     #[Route('/', name: 'app_home')]
-    public function home(PaginatorInterface $paginator, Request $request): Response
+    public function home(PaginatorInterface $paginator, Request $request, PropertyRepository $repo): Response
     {
         $search = new Search;
-        $form = $this->createForm(SearchType::class,$search);
-        dump($form->handleRequest($request));
-        die;
-        $repoProperty = $this->em->getRepository(Property::class);
-        $propertys = $repoProperty->findAll();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+        if (!empty($search->getMinSurface()) || (!empty($search->getMinPrice() !== null))) {
+            $propertys = $repo->findBySearch($search);
+        } else {
+            $propertys = $repo->findProperty();
+        }
         $pagination = $paginator->paginate(
             $propertys, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            8 /*limit per page*/
+            4 /*limit per page*/
         );
-        return $this->render('property/home.html.twig', ['propertys' => $pagination, 'form'=>$form->createView()]);
+        return $this->render('property/home.html.twig', ['propertys' => $pagination, 'form' => $form->createView()]);
     }
 
 
