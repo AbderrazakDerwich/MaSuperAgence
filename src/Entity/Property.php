@@ -12,8 +12,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @Vich\Uploadable
  */
-
-
 class Property
 {
 
@@ -73,6 +71,10 @@ class Property
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $sold;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'properties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
 
     public function getId(): ?int
@@ -285,6 +287,18 @@ class Property
     public function setSolds(?bool $solds): self
     {
         $this->solds = $solds;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

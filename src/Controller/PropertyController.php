@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Property;
 use App\Entity\Search;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,6 +50,7 @@ class PropertyController extends AbstractController
     #[Route('/manage', name: 'app_manage')]
     public function manage(PaginatorInterface $paginator, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $repoProperty = $this->em->getRepository(Property::class);
         $propertys = $repoProperty->findAll();
         $pagination = $paginator->paginate(
@@ -72,9 +74,12 @@ class PropertyController extends AbstractController
     public function create(Request $request): Response
     {
         $property = new Property();
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $property->setUser($user);
             $property = $form->getData();
             $this->em->persist($property);
             $this->em->flush();
@@ -89,6 +94,7 @@ class PropertyController extends AbstractController
     #[Route('/edit{id<[0-9]+>}', name: 'app_edit')]
     public function edit(Request $request, int $id): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $property = $this->em->find(Property::class, $id);
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
@@ -107,6 +113,7 @@ class PropertyController extends AbstractController
     #[Route('/Delete{id<[0-9]+>}', name: 'app_delete')]
     public function delete(int $id): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $property = $this->em->find(Property::class, $id);
         $this->em->remove($property);
         $this->em->flush();
