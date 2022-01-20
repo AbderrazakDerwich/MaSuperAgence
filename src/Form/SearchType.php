@@ -13,8 +13,8 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('minPrice')
-            ->add('minSurface');
+            ->add('minPrice', null, ['label' => 'Prix '], ['attr' => ['placeholder' => 'Prix ']])
+            ->add('minSurface', null, ['label' => 'Surface '], ['attr' => ['placeholder' => 'Surface ']]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

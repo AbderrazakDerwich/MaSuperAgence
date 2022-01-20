@@ -6,3 +6,7 @@ input {
 body {
     font-family: "Bitstream Vera Serif Bold", serif;
 }
+
+label {
+    color: rgb(8, 8, 8);
+}
