@@ -1,7 +1,7 @@
 # MaSuperAgence
 
 ## Introduction
-this project represents a website for the management of a real estate agency, 
+this project represents a platform for the management of a real estate agency, 
 composed of a used interface allowing consultation of the lists of existing properties and an admin interface to manage the site
 
 ## Installation
